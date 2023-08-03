@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { login } from "../feature/user/userslice";
+// import { login } from "../feature/user/userslice";
 import { useSelector, useDispatch } from "react-redux";
 import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -81,7 +81,7 @@ export const RegisterPage = () => {
               <div className="pt-4 text-center">
                 <button
                   className="hover:opacity-75 bg-[#502314]  text-sm text-white py-2 px-4 rounded-full"
-                  onClick={register}
+                  // onClick={register}
                 >
                   ยืนยันการสมัคร
                 </button>

@@ -1,7 +1,10 @@
 import React from "react";
-import HeadImage from "../../public/image/banner2.png";
+
 import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+import HeaderCarousel from "./HeaderCarousel";
 export const Head = () => {
   const [user] = useAuthState(auth);
 
@@ -18,7 +21,7 @@ export const Head = () => {
   }
 
   return (
-    <div className="bg-[#F5EBDC] h-full font-bold font-Kanit ">
+    <div className="h-full font-bold font-Kanit ">
       <div className="pt-16">
         <div className="md:hidden">
           <div>
@@ -34,9 +37,7 @@ export const Head = () => {
         </div>
 
         <div>
-          <div className="p-2">
-            <img className="w-screen h-full" src={HeadImage} alt="mainImg" />
-          </div>
+          <HeaderCarousel />
         </div>
       </div>
     </div>

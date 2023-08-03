@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { login } from "../feature/user/userslice";
+// import { login } from "../feature/user/userslice";
 import { useSelector, useDispatch } from "react-redux";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../config/firebase";
@@ -71,7 +71,7 @@ export const LogInPage = () => {
 
                 <button
                   type="submit"
-                  onClick={loginToApp}
+                  // onClick={loginToApp}
                   className="py-2 px-4 hover:opacity-75 bg-[#502314] text-center text-sm text-white rounded-full"
                 >
                   เข้าสู่ระบบ
@@ -102,7 +102,7 @@ export const LogInPage = () => {
               </div>
               <button
                 className="bg-[#502314] hover:opacity-75 text-sm text-white py-1 px-3 rounded-full"
-                onClick={signUserOut}
+                // onClick={signUserOut}
               >
                 ออกจากระบบ
               </button>

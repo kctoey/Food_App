@@ -6,37 +6,40 @@ import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { MenuDetail } from "./components/MenuDetail";
 import { useDispatch, useSelector } from "react-redux";
-import { calculateTotals } from "./feature/menu/menuSlice";
 import { LogInPage } from "./components/LogInPage";
-import { login, logout, selectUser } from "./feature/user/userslice";
+// import { login, logout, selectUser } from "./feature/user/userslice";
 import { auth, onAuthStateChanged } from "./config/firebase";
 import { RegisterPage } from "./components/RegisterPage";
+
+import Checkout from "./components/Checkout";
+import Cart from "./components/Cart";
+import Products from "./components/Products";
+import Product from "./components/Product";
 function App() {
-  const { menuItems } = useSelector((store) => store.menu);
-  const user = useSelector(selectUser);
+  // const { menuItems } = useSelector((store) => store.menu);
+  // const user = useSelector(selectUser);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(calculateTotals());
-  }, [menuItems]);
-  useEffect(() => {
-    onAuthStateChanged(auth, (userAuth) => {
-      if (userAuth) {
-        dispatch(
-          login({
-            email: userAuth.email,
-            uid: userAuth.uid,
-            displayName: userAuth.displayName,
-            photoUrl: userAuth.photoURL,
-          })
-        );
-      } else {
-        dispatch(logout());
-      }
-    });
-  }, []);
+
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (userAuth) => {
+  //     if (userAuth) {
+  //       dispatch(
+  //         login({
+  //           email: userAuth.email,
+  //           uid: userAuth.uid,
+  //           displayName: userAuth.displayName,
+  //           photoUrl: userAuth.photoURL,
+  //         })
+  //       );
+  //     } else {
+  //       dispatch(logout());
+  //     }
+  //   });
+  // }, []);
   return (
     <div>
       <Navbar />
+
       <Routes>
         <Route
           path="/"
@@ -44,15 +47,19 @@ function App() {
             <>
               <Head />
 
-              <MenuContainer />
+              <Products />
               <Footer />
             </>
           }
         />
-        <Route path="/login" element={<LogInPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/products/:productId" element={<MenuDetail />} />
-        <Route path="/products" element={<MenuContainer />} />
+        {/* <Route path="/login" element={<LogInPage />} />
+        <Route path="/register" element={<RegisterPage />} /> */}
+        {/* <Route path="/products/:productId" element={<MenuDetail />} /> */}
+        {/* <Route path="/products" element={<MenuContainer />} /> */}
+        <Route path="/cart" element={<Cart />} />
+        <Route exact path="/products" element={<Products />} />
+        <Route exact path="/products/:id" element={<Product />} />
+        {/* <Route exact path="/cart" element={<Cart />} /> */}
       </Routes>
     </div>
   );
