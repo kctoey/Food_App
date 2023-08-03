@@ -25,14 +25,14 @@ export const Head = () => {
       <div className="pt-16">
         <div className="md:hidden">
           <div>
-            {user && (
+            {/* {user && (
               <div className="  w-screen h-full inline-block align-middle space-x-2">
                 <p className="pl-8 pt-4 space-x-4">
                   <span>{greet}</span>
                   <span>{user?.displayName}</span>
                 </p>
               </div>
-            )}
+            )} */}
           </div>
         </div>
 
