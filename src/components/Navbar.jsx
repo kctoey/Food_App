@@ -4,14 +4,14 @@ import { signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { auth } from "../config/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+// import { useAuthState } from "react-firebase-hooks/auth";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import profile from "../../public/image/profile.png";
 const Navbar = () => {
   // const { menu } = useSelector((state) => ({ ...state }));
   const mycart = useSelector((state) => state.handleCart);
   console.log(mycart);
-  const [user] = useAuthState(auth);
+  // const [user] = useAuthState(auth);
   const [show, setShow] = useState(true);
 
   const signUserOut = async () => {
