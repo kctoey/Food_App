@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Logo from "../../public/image/logonavbar.png";
-import { signOut } from "firebase/auth";
+// import { signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { auth } from "../config/firebase";
+// import { auth } from "../config/firebase";
 // import { useAuthState } from "react-firebase-hooks/auth";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import profile from "../../public/image/profile.png";
