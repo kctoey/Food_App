@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Logo from "../../public/image/logonavbar.png";
 import { signOut } from "firebase/auth";
-import BagBrown from "../../public/image/ic-bag-brown.svg";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { auth } from "../config/firebase";

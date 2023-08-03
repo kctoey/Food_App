@@ -20,7 +20,7 @@
     "react-firebase-hooks": "^5.0.3",
     "react-google-button": "^0.7.2",
     "react-hot-toast": "^2.4.0",
-    "react-icons": "^4.4.0",
+    "react-icons": "^4.10.1",
     "react-loading-skeleton": "^3.3.1",
     "react-multi-carousel": "^2.8.4",
     "react-redux": "^8.0.2",
