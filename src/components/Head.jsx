@@ -1,12 +1,12 @@
 import React from "react";
 
-import { auth } from "../config/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+// import { auth } from "../config/firebase";
+// import { useAuthState } from "react-firebase-hooks/auth";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import HeaderCarousel from "./HeaderCarousel";
 export const Head = () => {
-  const [user] = useAuthState(auth);
+  // const [user] = useAuthState(auth);
 
   let greet = "";
   const myDate = new Date();
