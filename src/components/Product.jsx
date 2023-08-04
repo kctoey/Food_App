@@ -45,8 +45,8 @@ const Product = () => {
 
   const ShowProduct = () => {
     return (
-      <div className="p-5 grid grid-cols-4 gap-4  font-Kanit">
-        <div className="col-md-6">
+      <div className="p-20 w-screen">
+        <div className="">
           <img
             src={product.image}
             alt={product.title}
@@ -54,16 +54,16 @@ const Product = () => {
             width="280px"
           />
         </div>
-        <div className="col-md-6">
-          <h4 className="text-uppercase text-black-50">{product.category}</h4>
-          <h1 className="display-5">{product.title}</h1>
-          <p className="lead">
+        <div className="">
+          <h4 className="">{product.category}</h4>
+          <h1 className="">{product.title}</h1>
+          <p className="">
             Rating {product.rating && product.rating.rate}
             <span>
               <FaStar />
             </span>
           </p>
-          <h3 className="display-6 fw-bold my-4">${product.price}</h3>
+          <h3 className="">${product.price}</h3>
           <p className="lead">{product.description}</p>
           <button
             onClick={() => addProduct(product)}

@@ -6,10 +6,10 @@ import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { MenuDetail } from "./components/MenuDetail";
 import { useDispatch, useSelector } from "react-redux";
-import { LogInPage } from "./components/LogInPage";
+// import { LogInPage } from "./components/LogInPage";
 // import { login, logout, selectUser } from "./feature/user/userslice";
-import { auth, onAuthStateChanged } from "./config/firebase";
-import { RegisterPage } from "./components/RegisterPage";
+// import { auth, onAuthStateChanged } from "./config/firebase";
+// import { RegisterPage } from "./components/RegisterPage";
 
 import Checkout from "./components/Checkout";
 import Cart from "./components/Cart";
