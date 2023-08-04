@@ -179,7 +179,7 @@ const Products = () => {
             <div>
               <h2 className="text-left  text-2xl font-bold">Category</h2>
             </div>
-            <div className="flex py-4 flex-row md:space-x-16" role="group">
+            <div className="grid grid-cols-5 gap-4 " role="group">
               <button
                 type="button"
                 onClick={() => {
@@ -235,8 +235,8 @@ const Products = () => {
             </div>
           </div>
 
-          <div className="flex flex-row justify-center  px-8">
-            <div className="flex md:flex-row md:justify-center flex-col items-center px-2 ">
+          <div className="grid grid-flow-col auto-cols-max ">
+            <div className="flex md:flex-row md:justify-center flex-col px-2 ">
               <h1 className="py-2 px-4">Sort By</h1>
               <select
                 className="bg-gray-300 text-gray-700 text-sm py-2 px-4 rounded inline-flex items-center"
@@ -268,14 +268,13 @@ const Products = () => {
                 <option value="4">4 Stars or More</option>
               </select>
             </div>
-            <Tooltip title="Clear filter">
-              <button
-                className="flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-red-500 focus:outline-none bg-white rounded-full b hover:bg-gray-100 hover:text-red-500  dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                onClick={clearFilter}
-              >
-                <AiOutlineClear size={30} />
-              </button>
-            </Tooltip>
+            <div>
+              <Tooltip title="Clear filter">
+                <button className="text-red-500 p-4" onClick={clearFilter}>
+                  <AiOutlineClear size={12} />
+                </button>
+              </Tooltip>
+            </div>
           </div>
         </div>
         <hr className="my-4 mx-8" />
@@ -343,7 +342,7 @@ const Products = () => {
             return (
               <div
                 key={product.id}
-                className="md:mx-auto product-card  p-2  w-48 md:w-fit items-center flex flex-col justify-center  bg-white shadow-md  rounded-xl duration-500 mb-6  md:p-4"
+                className="mx-auto product-card  p-2  w-48 md:w-fit items-center flex flex-col justify-center  bg-white shadow-md  rounded-xl duration-500 mb-6  md:p-4"
               >
                 <Link
                   to={`/products/${product.id}`}
