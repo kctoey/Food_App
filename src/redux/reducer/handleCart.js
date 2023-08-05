@@ -6,6 +6,9 @@ const handleCart = (state = cart, action) => {
       //Check if product is already exist
       const exist = state.find((x) => x.id === product.id);
       if (exist) {
+        if (product.rating.count - 1 < product.qty) {
+          alert("Out of stock");
+        }
         return state.map((x) =>
           x.id === product.id ? { ...x, qty: x.qty + 1 } : x
         );
@@ -19,7 +22,7 @@ const handleCart = (state = cart, action) => {
           },
         ];
       }
-      break;
+
     case "DELITEM":
       const exist1 = state.find((x) => x.id === product.id);
       if (exist1.qty === 1) {
@@ -34,10 +37,13 @@ const handleCart = (state = cart, action) => {
             : x
         );
       }
-      break;
+    case "CLEARCART":
+      const cart = state.find((x) => x.id === product.id);
+
+      return state.filter((x) => x.id !== cart.id);
+
     default:
       return state;
-      break;
   }
 };
 export default handleCart;

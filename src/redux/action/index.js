@@ -10,3 +10,9 @@ export const delCart = (product) => {
     payload: product,
   };
 };
+export const clearCart = (product) => {
+  return {
+    type: "CLEARCART",
+    payload: product,
+  };
+};

@@ -74,29 +74,17 @@ const Products = () => {
 
     return updatedList;
   }
-  // const a = ratings.rating.rate;
-  // console.log(a);
-  // const highRatings = [];
-  // for (const rating of ratings) {
-  //   if (rating >= option) {
-  //     highRatings.push(rating);
-  //   }
-
-  // return highRatings;
-
-  const makeRequest = () => {
-    setLoading(true);
+  const makeRequest = async () => {
     try {
-      axios.get("https://fakestoreapi.com/products").then((response) => {
-        setData(response.data);
+      setLoading(true);
+      const response = await fetch("https://fakestoreapi.com/products");
+      const data = await response.json();
+      setData(data);
 
-        setRandom(
-          response.data.filter((product) => product.category === "electronics")
-        );
+      setRandom(data.filter((product) => product.category === "electronics"));
 
-        setFilter(response.data);
-        setLoading(false);
-      });
+      setFilter(data);
+      setLoading(false);
       return data;
     } catch (error) {
       console.log("error", error);
@@ -109,20 +97,32 @@ const Products = () => {
 
   const Loading = () => {
     return (
-      <>
-        <div className="col-md-3">
-          <Skeleton height={350} />
+      <div className="flex flex-row justify-around w-full mx-auto">
+        <div>
+          <div>
+            <Skeleton height="250px" width="300px" />
+          </div>
+          <div style={{ lineHeight: 2 }}>
+            <Skeleton count={5} />
+          </div>
         </div>
-        <div className="col-md-3">
-          <Skeleton height={350} />
+        <div>
+          <div>
+            <Skeleton height="250px" width="300px" />
+          </div>
+          <div style={{ lineHeight: 2 }}>
+            <Skeleton count={5} />
+          </div>
         </div>
-        <div className="col-md-3">
-          <Skeleton height={350} />
+        <div>
+          <div>
+            <Skeleton height="250px" width="300px" />
+          </div>
+          <div style={{ lineHeight: 2 }}>
+            <Skeleton count={5} />
+          </div>
         </div>
-        <div className="col-md-3">
-          <Skeleton height={350} />
-        </div>
-      </>
+      </div>
     );
   };
   const filterProduct = (cat) => {
