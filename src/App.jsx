@@ -15,6 +15,7 @@ import Checkout from "./components/Checkout";
 import Cart from "./components/Cart";
 import Products from "./components/Products";
 import Product from "./components/Product";
+
 function App() {
   // const { menuItems } = useSelector((store) => store.menu);
   // const user = useSelector(selectUser);
@@ -59,6 +60,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/products/:id" element={<Product />} />
+
         {/* <Route exact path="/cart" element={<Cart />} /> */}
       </Routes>
     </div>

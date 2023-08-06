@@ -41,7 +41,10 @@ const ProductCard = (props) => {
             {product.title}
           </p>
           <div className="flex items-center flex-col">
-            {sale ? (
+            <>
+              <p>${product.price}</p>
+            </>
+            {/* {sale ? (
               <>
                 <del className="text-xs  text-gray-400 cursor-auto my-3">
                   ${product.price}
@@ -52,7 +55,7 @@ const ProductCard = (props) => {
               <>
                 <p>${product.price}</p>
               </>
-            )}
+            )} */}
 
             <div>
               <p className="text-sm text-gray-600 ml-2">

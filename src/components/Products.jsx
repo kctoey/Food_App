@@ -322,11 +322,11 @@ const Products = () => {
     <div>
       <div className=" m-8 font-Kanit">
         <h2 className=" text-center text-2xl font-bold py-4">
-          Flash sale
-          <Countdown
+          New Product
+          {/* <Countdown
             className="p-1 w-32  text-xl font-bold"
             date={Date.now() + 10000000}
-          />
+          /> */}
         </h2>
         <Carousel
           responsive={responsive}
@@ -362,13 +362,11 @@ const Products = () => {
                       {product.title}
                     </p>
                     <div className="items-center flex flex-col">
-                      <del className="text-xs  text-gray-400 cursor-auto my-3">
-                        ${product.price}
-                      </del>
-                      <p className="text-red-500">
+                      <div className=" cursor-auto my-3">${product.price}</div>
+                      {/* <p className="text-red-500">
                         {" "}
                         ${discount5(product.price)}
-                      </p>
+                      </p> */}
                       <div>
                         <p className="text-sm text-gray-600 ml-2">
                           {getStars(product.rating.rate)}
