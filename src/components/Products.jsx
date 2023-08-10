@@ -3,8 +3,10 @@ import Tooltip from "@mui/material/Tooltip";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { AiFillShop } from "react-icons/ai";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { red } from "@mui/material/colors";
+
+import { AiFillShop, AiOutlineSearch } from "react-icons/ai";
 import { GiShirt } from "react-icons/gi";
 import { GiLargeDress } from "react-icons/gi";
 import { GiDiamondRing } from "react-icons/gi";
@@ -14,6 +16,14 @@ import Countdown from "react-countdown";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ProductCard from "./ProductCard";
+import { TextField } from "@mui/material";
+const myTheme = createTheme({
+  palette: {
+    light: "#abffbb",
+    main: "#00ffbb",
+    dark: "#ffffbb",
+  },
+});
 const Products = () => {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
@@ -21,7 +31,12 @@ const Products = () => {
   const [option, setOption] = useState("");
   const [random, setRandom] = useState([]);
   const [onSale, setonSale] = useState(false);
-  console.log(onSale);
+  const [searchValue, setSearchValue] = useState("");
+  const [cursorPosition, setCursorPosition] = useState(0);
+
+  const handleBlur = () => {
+    setCursorPosition(value.length);
+  };
   const [{ sortBy }, dispatch] = useReducer(
     function reducer(state, action) {
       switch (action.type) {
@@ -65,7 +80,7 @@ const Products = () => {
     return productList;
   }
   const clearFilter = () => {
-    setOption(null);
+    setOption("");
   };
   function getHighRatings(ratings, option) {
     let a = ratings;
@@ -133,6 +148,9 @@ const Products = () => {
 
   getSortedData(filter, sortBy);
   const result = getHighRatings(filter, option);
+  const filteredUsers = result.filter((results) => {
+    return results.title.toLowerCase().includes(searchValue.toLowerCase());
+  });
 
   const getStars = (rating) => {
     const stars = [];
@@ -173,116 +191,14 @@ const Products = () => {
 
   const ShowProduct = () => {
     return (
-      <div className="w-full  font-Kanit">
-        <div className="">
-          <div className="flex flex-col justify-center text-center items-center p-4">
-            <div>
-              <h2 className="text-left  text-2xl font-bold">Category</h2>
-            </div>
-            <div className="grid grid-cols-5 gap-4 " role="group">
-              <button
-                type="button"
-                onClick={() => {
-                  setonSale(false);
-                  setFilter(data);
-                }}
-                className="text-md flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2  font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              >
-                <AiFillShop />
-                All
-              </button>
-
-              <button
-                onClick={() => {
-                  setonSale(false);
-                  filterProduct("men's clothing");
-                }}
-                className="flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              >
-                <GiShirt />
-                Men
-              </button>
-              <button
-                onClick={() => {
-                  setonSale(false);
-                  filterProduct("women's clothing");
-                }}
-                className="flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              >
-                <GiLargeDress />
-                Woman
-              </button>
-              <button
-                onClick={() => {
-                  setonSale(false);
-                  filterProduct("jewelery");
-                }}
-                className=" flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              >
-                <GiDiamondRing />
-                Jewelery
-              </button>
-              <button
-                onClick={() => {
-                  setonSale(true);
-                  filterProduct("electronics");
-                }}
-                className=" flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              >
-                <HiOutlineDesktopComputer className="items-center text-center justify-center" />
-                Electronic
-              </button>
-            </div>
-          </div>
-
-          <div className="grid grid-flow-col auto-cols-max ">
-            <div className="flex md:flex-row md:justify-center flex-col px-2 ">
-              <h1 className="py-2 px-4">Sort By</h1>
-              <select
-                className="bg-gray-300 text-gray-700 text-sm py-2 px-4 rounded inline-flex items-center"
-                value={sortBy}
-                onChange={(e) =>
-                  dispatch({ type: "SORT", payload: e.target.value })
-                }
-              >
-                <option value="PRICE_HIGH_TO_LOW">Price - High to Low</option>
-                <option value="PRICE_LOW_TO_HIGH">Price - Low to High</option>
-                <option value="RATE_HIGH_TO_LOW">Rate - High to Low</option>
-                <option value="RATE_LOW_TO_HIGH">Rate - Low to High</option>
-              </select>
-            </div>
-
-            <div className="flex md:flex-row md:justify-center flex-col items-center">
-              <h1 className="py-2 px-4">Product Ratings</h1>
-              <select
-                className="bg-gray-300 text-gray-700 text-sm py-2 px-4 rounded inline-flex items-center"
-                value={option}
-                onChange={(e) => setOption(e.target.value)}
-              >
-                <option value="" disabled>
-                  Select Rating Option
-                </option>
-                <option value="1">1 Star or More</option>
-                <option value="2">2 Stars or More</option>
-                <option value="3">3 Stars or More</option>
-                <option value="4">4 Stars or More</option>
-              </select>
-            </div>
-            <div>
-              <Tooltip title="Clear filter">
-                <button className="text-red-500 p-4" onClick={clearFilter}>
-                  <AiOutlineClear size={12} />
-                </button>
-              </Tooltip>
-            </div>
-          </div>
-        </div>
+      <div className="w-full  font-Kanit text-[#502314]">
+        <div className=""></div>
         <hr className="my-4 mx-8" />
-        <div className="w-fit mx-auto grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
-          {result.map((product) => {
+        <div className="w-fit mx-auto grid grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 px-4 py-16 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+          {filteredUsers.map((product) => {
             return (
               <>
-                <ProductCard onSale={onSale} product={product} />
+                <ProductCard onSale={onSale} product={product} loading="lazy" />
                 {/* <div
                   className="bg-white rounded-md p-4 items-center  border border-gray-200 text-center"
                   key={product.id}
@@ -321,13 +237,10 @@ const Products = () => {
   return (
     <div>
       <div className=" m-8 font-Kanit">
-        <h2 className=" text-center text-2xl font-bold py-4">
+        <h2 className="text-[#502314] text-center text-2xl font-bold py-4">
           New Product
-          {/* <Countdown
-            className="p-1 w-32  text-xl font-bold"
-            date={Date.now() + 10000000}
-          /> */}
         </h2>
+
         <Carousel
           responsive={responsive}
           autoPlay={true}
@@ -342,7 +255,7 @@ const Products = () => {
             return (
               <div
                 key={product.id}
-                className="mx-auto product-card  p-2  w-48 md:w-fit items-center flex flex-col justify-center  bg-white shadow-md  rounded-xl duration-500 mb-6  md:p-4"
+                className="text-[#502314] mx-auto product-card  p-2  w-48 md:w-fit items-center flex flex-col justify-center  bg-white shadow-md  rounded-xl duration-500 mb-6  md:p-4"
               >
                 <Link
                   to={`/products/${product.id}`}
@@ -358,7 +271,7 @@ const Products = () => {
                       {" "}
                       {product.category}
                     </span>
-                    <p className="text-sm md:text-lg font-bold text-black truncate block capitalize text-center">
+                    <p className="text-sm md:text-lg font-bold truncate block capitalize text-center">
                       {product.title}
                     </p>
                     <div className="items-center flex flex-col">
@@ -380,7 +293,129 @@ const Products = () => {
           })}
         </Carousel>
       </div>
+      <div className="flex flex-col justify-center items-center">
+        {/* <input
+          type="text"
+          onChange={(e) => setSearchValue(e.target.value)}
+          value={searchValue}
+          placeholder="Search by name"
+        /> */}
+        <div className="text-[#502314] flex flex-col justify-center text-center items-center p-4">
+          <div>
+            <h2 className="text-left  text-2xl font-bold">Category</h2>
+          </div>
+          <div className="grid grid-cols-5 gap-4  " role="group">
+            <button
+              type="button"
+              onClick={() => {
+                setonSale(false);
+                setFilter(data);
+              }}
+              className="text-md flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2  font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            >
+              <AiFillShop className="text-[#502314]" />
+              All
+            </button>
 
+            <button
+              onClick={() => {
+                setonSale(false);
+                filterProduct("men's clothing");
+              }}
+              className="flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            >
+              <GiShirt className="text-[#502314]" />
+              Men
+            </button>
+            <button
+              onClick={() => {
+                setonSale(false);
+                filterProduct("women's clothing");
+              }}
+              className="flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            >
+              <GiLargeDress className="text-[#502314]" />
+              Woman
+            </button>
+            <button
+              onClick={() => {
+                setonSale(false);
+                filterProduct("jewelery");
+              }}
+              className=" flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            >
+              <GiDiamondRing className="text-[#502314]" />
+              Jewelery
+            </button>
+            <button
+              onClick={() => {
+                setonSale(true);
+                filterProduct("electronics");
+              }}
+              className=" flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            >
+              <HiOutlineDesktopComputer className="text-[#502314] items-center text-center justify-center" />
+              Electronic
+            </button>
+          </div>
+        </div>
+
+        <div className="font-Kanit grid grid-flow-col auto-cols-max items-center text-center justify-center">
+          <div className="flex md:flex-row md:justify-center flex-col px-2 space-y-4 md:space-y-0">
+            <div className="flex md:flex-row justify-center items-center text-center">
+              <AiOutlineSearch size={20} className="w-16 text-[#502314]" />
+
+              <TextField
+                onChange={(e) => setSearchValue(e.target.value)}
+                value={searchValue}
+                id="standard-search"
+                label="Search"
+                type="search"
+                variant="standard"
+                InputLabelProps={{
+                  sx: { color: "brown", "&.Mui-focused": { color: "brown" } },
+                }}
+              />
+            </div>
+            <h1 className="py-2 px-4">Sort By</h1>
+            <select
+              className="bg-[#502314] text-white text-sm py-2 px-4 rounded inline-flex items-center"
+              value={sortBy}
+              onChange={(e) =>
+                dispatch({ type: "SORT", payload: e.target.value })
+              }
+            >
+              <option value="PRICE_HIGH_TO_LOW">Price - High to Low</option>
+              <option value="PRICE_LOW_TO_HIGH">Price - Low to High</option>
+              <option value="RATE_HIGH_TO_LOW">Rate - High to Low</option>
+              <option value="RATE_LOW_TO_HIGH">Rate - Low to High</option>
+            </select>
+            <div className="flex md:flex-row md:justify-center flex-col items-center">
+              <h1 className="py-2 px-4">Product Ratings</h1>
+              <select
+                className="bg-[#502314] text-white text-sm py-2 px-4 rounded inline-flex items-center"
+                value={option}
+                onChange={(e) => setOption(e.target.value)}
+              >
+                <option value="" disabled>
+                  Select Rating Option
+                </option>
+                <option value="1">1 Star or More</option>
+                <option value="2">2 Stars or More</option>
+                <option value="3">3 Stars or More</option>
+                <option value="4">4 Stars or More</option>
+              </select>
+            </div>
+            <div>
+              <Tooltip title="Clear filter">
+                <button className="text-red-500 p-4" onClick={clearFilter}>
+                  <AiOutlineClear size={20} />
+                </button>
+              </Tooltip>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="flex flex-row">
         {loading ? <Loading /> : <ShowProduct />}
       </div>

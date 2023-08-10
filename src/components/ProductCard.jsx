@@ -21,7 +21,7 @@ const ProductCard = (props) => {
   return (
     <div
       key={product.id}
-      className="product-card w-48 md:w-fit bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
+      className="text-[#502314] product-card w-48 md:w-fit bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
     >
       <Link
         to={`/products/${product.id}`}
@@ -37,7 +37,7 @@ const ProductCard = (props) => {
             {" "}
             {product.category}
           </span>
-          <p className="text-lg text-center font-bold text-black truncate block capitalize">
+          <p className="text-lg text-center font-bold text-[#502314] truncate block capitalize">
             {product.title}
           </p>
           <div className="flex items-center flex-col">

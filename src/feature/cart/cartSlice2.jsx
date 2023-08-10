@@ -1,33 +1,39 @@
-// import { createSelector, createSlice } from "@reduxjs/toolkit";
-// import menuItems from "../../menuItems";
+import { createSlice } from "@reduxjs/toolkit";
 
-// const initialState = {
-//   value: "hello world from redux toolkit",
-//   user: [],
-//   loading: false,
-// };
-// export const cartSlice2 = createSlice({
-//   name: "cartStore",
+const initialState = [];
 
-//   initialState: initialState,
-//   reducers: {
-//     login: (state, action) => {
-//       state.value = "สวัสดีครับ สogin นะครับ";
-//       state.user = action.payload;
-//       state.loading = true;
-//     },
-//     logout: (state) => {
-//       state.value = "สวัสดีครับ logout นะครับ";
-//       state.loading = false;
-//     },
-//   },
-// });
-// export const { login, logout } = cartSlice2.actions;
-// export default cartSlice2.reducer;
-import React from "react";
+const cartSlice = createSlice({
+  name: "cart",
+  initialState,
+  reducers: {
+    addItem(state, action) {
+      const product = action.payload;
+      const exist = state.find((x) => x.id === product.id);
+      if (exist) {
+        exist.qty++;
+      } else {
+        state.push({ ...product, qty: 1 });
+      }
+    },
+    removeItem(state, action) {
+      const product = action.payload;
+      const exist = state.find((x) => x.id === product.id);
+      if (exist.qty === 1) {
+        state = state.filter((x) => x.id !== product.id);
+      } else {
+        exist.qty--;
+      }
+    },
+    clearCart(state, action) {
+      const product = action.payload;
 
-const cartSlice2 = () => {
-  return <div>cartSlice2</div>;
-};
+      const cart = state.find((x) => x.id === product.id);
 
-export default cartSlice2;
+      return state.filter((x) => x.id !== cart.id);
+    },
+  },
+});
+
+export const { addItem, removeItem, clearCart } = cartSlice.actions;
+
+export default cartSlice.reducer;

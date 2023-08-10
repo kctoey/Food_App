@@ -1,27 +1,22 @@
 import React, { useState } from "react";
 import Logo from "../../public/image/logonavbar.png";
-// import { signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-// import { auth } from "../config/firebase";
-// import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../config/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import profile from "../../public/image/profile.png";
 const Navbar = () => {
-  // const { menu } = useSelector((state) => ({ ...state }));
-  const mycart = useSelector((state) => state.handleCart);
-  console.log(mycart);
-  // const [user] = useAuthState(auth);
-  const [show, setShow] = useState(true);
-
+  const cart = useSelector((state) => state.cart);
+  const [user] = useAuthState(auth);
+  console.log(user);
   const signUserOut = async () => {
     await signOut(auth);
   };
-  function changeState() {
-    setShow(!show);
-  }
+
   return (
-    <div className="bg-[#F5EBDC] fixed mx-auto w-screen h-[60px] shadow-lg font-Kanit z-10 ">
+    <div className="bg-[#F5EBDC] fixed mx-auto w-full h-[60px] shadow-lg font-Kanit z-10 ">
       <div className="flex flex-row justify-between ">
         <div className="pl-2 ">
           <Link to={`/`}>
@@ -29,46 +24,48 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="flex flex-row pr-6 justify-center text-center ">
-          {/* <div className=" invisible md:visible ">
-            {user && (
-              <div className="flex text-center justify-center px-8 items-center h-16">
-                <img
-                  className="w-6 h-4 md:w-12 md:h-12 rounded-full md:scale-50"
-                  src={profile}
-                  width="40"
-                  height="40"
-                />
-                <span className="text-sm ">{user?.displayName}</span>
+        <div className="flex flex-row px-4 justify-center text-center items-center md:h-full  ">
+          <div>
+            {!user ? (
+              <div className="py-4">
+                <Link to={`/login`}>
+                  <div className="text-center w-20 ">
+                    <button className="bg-[#502314] items-center  text-white  px-3 rounded-full md:py-1 hover:shadow-sm">
+                      Sign In
+                    </button>
+                  </div>
+                </Link>
               </div>
-            )}
-          </div>
-          <div className="flex pt-1 text-center justify-center px-4 items-center text-sm md:text-base hover:opacity-75 ">
-            <button
-              onClick={changeState}
-              className="bg-[#502314]  text-white py-1 px-3 rounded-full md:py-1 hover:shadow-sm"
-            >
-              {!user ? (
-                <Link to={`/login`}>Sign In</Link>
-              ) : (
-                <div className="text-center w-20">
-                  <button className="text-sm " onClick={signUserOut}>
+            ) : (
+              <div>
+                <div className="flex flex-row justify-center items-center  md:space-x-8 text-sm ">
+                  <img
+                    className="w-6 h-6 md:w-12 md:h-12 rounded-full md:scale-50"
+                    src={profile}
+                    width="40"
+                    height="40"
+                  />
+                  <span className="text-sm ">{user?.displayName}</span>
+
+                  <button
+                    className="bg-[#502314] items-center  text-white mx-4  px-4 rounded-full md:py-1 hover:shadow-sm"
+                    onClick={signUserOut}
+                  >
                     Sign Out
                   </button>
+                  <div>
+                    <div className="flex flex-row ">
+                      <Link to={`/cart`}>
+                        <AiOutlineShoppingCart size={"2rem"} />
+                      </Link>
+                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#D62300]">
+                        <p className="text-white">{cart.length ?? "0"}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              )}
-            </button>
-          </div> */}
-          <div className="flex flex-col justify-center">
-            <div className="flex flex-row pl-3 pt-2">
-              <Link to={`/cart`}>
-                <AiOutlineShoppingCart size={"2rem"} />
-              </Link>
-              <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#D62300]">
-                <p className="text-white">{mycart.length}</p>
               </div>
-            </div>
-            <div className="flex  justify-center text-center text-sm"></div>
+            )}
           </div>
         </div>
       </div>

@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { addCart, clearCart } from "../redux/action";
+// import { addCart, clearCart } from "../redux/action";
 import { useDispatch } from "react-redux";
-import { delCart } from "../redux/action";
+// import { delCart } from "../redux/action";
 import { Tooltip } from "@mui/material";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import cart from "../../public/image/ic068.png";
+import toast, { Toaster } from "react-hot-toast";
+import { addItem, removeItem, clearCart } from "../feature/cart/cartSlice2";
 const Cart = () => {
-  const product = useSelector((state) => state.handleCart);
+  // const product = useSelector((state) => state.handleCart);
   const dispatch = useDispatch();
+  const RemoveNotify = () => toast.error("Product removed from cart");
+  const product = useSelector((state) => state.cart);
 
-  const deleteButton = (product) => {
-    dispatch(delCart(product));
-  };
-  const addButton = (product) => {
-    dispatch(addCart(product));
-  };
-  const clearButton = (product) => {
-    dispatch(clearCart(product));
-  };
+  // const addItem = (product) => {
+  //   dispatch({ type: "ADDITEM", payload: product });
+  // };
+
+  // const removeItem = (product) => {
+  //   dispatch({ type: "REMOVEITEM", payload: product });
+  // };
 
   const [summary, setSummary] = useState({
     totalPrice: 0,
@@ -45,7 +47,7 @@ const Cart = () => {
   useEffect(() => {
     calculateSummary();
   }, [product]);
-  if (product < 1) {
+  if (product < 1 || !product) {
     return (
       <div className="font-Kanit h-screen w-screen flex flex-col items-center justify-center">
         <img
@@ -62,14 +64,16 @@ const Cart = () => {
             Go Shopping
           </button>
         </Link>
+        <Toaster position="top-center" reverseOrder={true} />
       </div>
     );
   }
   return (
-    <div className="font-Kanit md:p-20 p-12 pt-20 flex md:flex-row flex-col justify-between">
+    <div className="font-Kanit md:p-20 p-12 pt-20 flex xl:flex-row flex-col xl:space-x-16 justify-between">
       <div className="md:w-[1400px]  shadow-lg rounded-xl p-4">
         <h1 className="py-8 text-2xl">Your Cart</h1>
         <hr></hr>
+        <Toaster position="top-center" reverseOrder={true} />
         {product.map((productincart) => {
           return (
             <div key={productincart.id}>
@@ -88,14 +92,15 @@ const Cart = () => {
 
                   <button
                     className="text-red-500 text-sm md:invisible visible"
-                    onClick={() => clearButton(productincart)}
+                    onClick={() => dispatch(reset())}
                   >
                     Remove
                   </button>
                 </div>
+
                 <div className="text-right md:pr-0 pr-16 md:visible invisible">
                   <Tooltip title="Click to delete from cart ">
-                    <button onClick={() => clearButton(productincart)}>
+                    <button onClick={() => dispatch(clearCart(productincart))}>
                       <RiDeleteBin6Line />
                     </button>
                   </Tooltip>
@@ -110,7 +115,7 @@ const Cart = () => {
                   <Tooltip title="Click to reduce">
                     <button
                       className="rounded-xl border bg-white px-4  text-black disabled:bg-gray-300"
-                      onClick={() => deleteButton(productincart)}
+                      onClick={() => dispatch(removeItem(productincart))}
                       disabled={productincart.qty === 1}
                     >
                       -
@@ -121,11 +126,12 @@ const Cart = () => {
                   <Tooltip title="Click to add">
                     <button
                       className="rounded-xl bg-orange-900 px-4 text-white"
-                      onClick={() => addButton(productincart)}
+                      onClick={() => dispatch(addItem(productincart))}
                     >
                       +
                     </button>
                   </Tooltip>
+
                   <div className="px-2 visible md:invisible ">
                     <p className=" ">
                       ${productincart.qty * productincart.price}
@@ -143,12 +149,46 @@ const Cart = () => {
           );
         })}
       </div>
-      <div className="md:w-72 md:h-72  shadow-lg rounded-xl p-4">
+      <div className="xl:w-72 h-full shadow-lg rounded-xl p-4">
         <div className="flex flex-col    ">
           <div>
             {" "}
             <h1 className="text-2xl py-8">Summary</h1>
             <hr />
+          </div>
+          <div>
+            {product.map((productincart) => {
+              return (
+                <div
+                  key={productincart.id}
+                  className="flex flex-row border-b-gray-100 border-b-2"
+                >
+                  <div className="w-1/2 py-2">
+                    <img
+                      className="  object-cover p-2 "
+                      width={80}
+                      height={80}
+                      src={productincart.image}
+                      alt={productincart.title}
+                    />
+                  </div>
+                  <div className="text-sm w-1/2 py-2 items-center justify-center">
+                    <div>
+                      <p className="truncate text-left py-4">
+                        {productincart.title}
+                      </p>
+                    </div>
+
+                    <div className="p-2  justify-between flex flex-co">
+                      <p className="text-gray-500">
+                        {productincart.qty}X{productincart.price}
+                      </p>
+                      <p> ${productincart.qty * productincart.price}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
           <div className="flex flex-row justify-between">
             {" "}
@@ -160,7 +200,7 @@ const Cart = () => {
             <h2>Vat 7%</h2>
             <p>$ {summary.vat.toFixed(2)}</p>
           </div>
-          <div className="flex flex-row justify-between pb-8">
+          <div className="flex flex-row justify-between font-bold pb-8 text-[#8B4513]">
             <h2>Subtotal</h2>
             <p>$ {summary.subtotal.toFixed(2)}</p>
           </div>

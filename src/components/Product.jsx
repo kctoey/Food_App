@@ -3,17 +3,40 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
-import { addCart } from "../redux/action";
-import { useDispatch } from "react-redux";
+// import { addCart } from "../redux/action";
+import { useDispatch, useSelector } from "react-redux";
+import { MdArrowBackIos } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
+import { addItem } from "../feature/cart/cartSlice2";
+import LoginDialog from "./LoginDialog";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Button } from "@mui/material";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#8B4513",
+    },
+  },
+});
 const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const notify = () => toast.success("Add to cart");
+  const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
+  console.log(user.user);
   const dispatch = useDispatch();
-  const addProduct = (product) => {
-    dispatch(addCart(product));
-  };
+  // const addItem = (product) => {
+  //   dispatch({ type: "ADDITEM", payload: product });
+  // };
+
+  // const dispatch = useDispatch();
+  // const addProduct = (product) => {
+  //   dispatch(addCart(product));
+  //   notify();
+  // };
   useEffect(() => {
     const getProduct = async () => {
       setLoading(true);
@@ -25,12 +48,22 @@ const Product = () => {
   }, []);
   const Loading = () => {
     return (
-      <div className="p-20 w-screen">
-        <div>
-          <Skeleton height="400px" width="280px" />
+      <div className="lg:p-20  justify-center items-center px-8 j w-full flex lg:flex-row flex-col">
+        <div className="mt-20 lg:w-60 ">
+          <Skeleton className="rounded-md" height="250px" width="250px" />
         </div>
-        <div style={{ lineHeight: 2 }}>
-          <Skeleton count={5} />
+
+        <div
+          style={{ lineHeight: 2 }}
+          className="mt-8 lg:mt-0 lg:p-16 lg:ml-12 lg:w-1/2 h-[300px] w-[300px]"
+        >
+          {" "}
+          <Skeleton className="py-2 w-32 mb-4" count={1} />
+          <Skeleton className="py-4" count={1} />
+          <Skeleton className="py-2 my-4 w-16" count={1} />
+          <Skeleton className="py-2 mb-4 w-16" count={1} />
+          <Skeleton count={4} />
+          <Skeleton className="py-2 my-4 w-32" count={1} />
         </div>
       </div>
     );
@@ -41,7 +74,7 @@ const Product = () => {
       <div className="lg:p-20 pt-20 px-8 justify-center items-center w-full flex lg:flex-row flex-col">
         <Link to="/">
           <button className="absolute left-4 lg:left-8 top-16 lg:top-20  rounded-xl border border-[#8B4513] bg-white ml-4 px-4 py-2 text-[#8B4513] text-center">
-            Back
+            <MdArrowBackIos />
           </button>
         </Link>
         <div className="p-8 lg:w-60">
@@ -61,22 +94,29 @@ const Product = () => {
             </span>{" "}
             {product.rating && product.rating.rate}
           </p>
-          <h3 className="py-4 text-[#8B4513] text-xl">${product.price}</h3>
+          <h3 className="py-4 text-[#8B4513] text-3xl">${product.price}</h3>
           <p className="py-4">{product.description}</p>
-
-          <button
-            onClick={() => addProduct(product)}
-            className="mt-4 lg:w-32 rounded-xl bg-[#8B4513] px-4 py-2 text-white "
-          >
-            Add to Cart
-          </button>
-
-          <Link
-            to="/cart"
-            className="w-32 rounded-xl border border-[#8B4513] bg-white ml-4 px-4 py-2 text-[#8B4513] text-center"
-          >
-            Go to cart
-          </Link>
+          {user.user !== "" ? (
+            <>
+              <button
+                className="uppercase w-40 rounded-md border border-[#8B4513] bg-white ml-4 px-4 py-2 text-[#8B4513] text-center"
+                onClick={() => dispatch(addItem(product))}
+                color="primary"
+                variant="outlined"
+              >
+                Add to Cart
+                <Toaster position="top-center" reverseOrder={true} />
+              </button>
+              <Link
+                to="/cart"
+                className="uppercase w-40 rounded-md border border-[#8B4513] bg-white ml-4 px-4 py-2 text-[#8B4513] text-center"
+              >
+                Go to cart
+              </Link>
+            </>
+          ) : (
+            <LoginDialog />
+          )}
         </div>
       </div>
     );
