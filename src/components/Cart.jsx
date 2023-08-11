@@ -64,7 +64,6 @@ const Cart = () => {
             Go Shopping
           </button>
         </Link>
-        <Toaster position="top-center" reverseOrder={true} />
       </div>
     );
   }

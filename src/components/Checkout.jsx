@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import promtpay from "../../public/image/promtpay.jpg";
+import { clearAllCart } from "../feature/cart/cartSlice2";
+import { Toaster, toast } from "react-hot-toast";
 
 const Checkout = () => {
   const product = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   console.log(product);
   const [summary, setSummary] = useState({
     totalPrice: 0,
@@ -27,7 +30,11 @@ const Checkout = () => {
   useEffect(() => {
     calculateSummary();
   }, [product]);
-
+  const notify = () => toast.success("Payment suscessfully");
+  const handleClick = () => {
+    dispatch(clearAllCart());
+    notify();
+  };
   return (
     <div className="bg-[#F5EBDC] w-screen h-screen pt-20 font-Kanit flex flex-col justify-center items-center">
       <div>
@@ -35,7 +42,8 @@ const Checkout = () => {
         <p>Total amount : ${summary.subtotal.toFixed(2)}</p>
       </div>
       <img width={300} height={300} src={promtpay} alt="" />
-      <button> แจ้งหลักฐานการโอน</button>
+      <button onClick={handleClick}> ยืนยันการโอน</button>
+      <Toaster position="top-center" reverseOrder={true} />
     </div>
   );
 };
