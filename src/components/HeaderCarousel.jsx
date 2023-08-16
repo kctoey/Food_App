@@ -6,9 +6,10 @@ import HeadImage2 from "../../public/image/banner_2.jpg";
 import HeadImage3 from "../../public/image/banner_3.jpg";
 export default () => (
   <Carousel
+    infiniteLoop={true}
     showThumbs={false}
     showStatus={false}
-    autoPlay
+    autoPlay={true}
     className="max-w-[1600px] max-h-[492px] object-cover mx-auto p-8"
   >
     <div>

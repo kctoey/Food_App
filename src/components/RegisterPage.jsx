@@ -37,7 +37,7 @@ export const RegisterPage = () => {
             )
           )
           .catch((error) => {
-            console.log("user not updated");
+            alert("user not updated");
           });
       })
       .catch((err) => {

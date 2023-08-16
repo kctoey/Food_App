@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import profile from "../../public/image/profile.png";
+
 import CartItemBox from "./CartItemBox";
+import UserBox from "./UserBox";
 const Navbar = () => {
   const cart = useSelector((state) => state.cart);
   const [user] = useAuthState(auth);
@@ -40,20 +41,10 @@ const Navbar = () => {
             ) : (
               <div>
                 <div className="flex flex-row justify-center items-center  md:space-x-8 text-sm ">
-                  <img
-                    className="w-6 h-6 md:w-12 md:h-12 rounded-full md:scale-50"
-                    src={profile}
-                    width="40"
-                    height="40"
-                  />
-                  <span className="text-sm ">{user?.displayName}</span>
+                  <div className="invisible lg:visible z-10">
+                    <UserBox />
+                  </div>
 
-                  <button
-                    className="bg-[#502314] items-center  text-white mx-4  px-4 rounded-full md:py-1 hover:shadow-sm"
-                    onClick={signUserOut}
-                  >
-                    Sign Out
-                  </button>
                   <div className="invisible lg:visible z-10">
                     <CartItemBox />
                   </div>

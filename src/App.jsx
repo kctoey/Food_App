@@ -17,6 +17,8 @@ import Cart from "./components/Cart";
 import Products from "./components/Products";
 import Product from "./components/Product";
 import LineBtn from "./components/LineBtn";
+import Account from "./components/Account";
+import Purchase from "./components/Purchase";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -64,7 +66,8 @@ function App() {
         <Route path="/payment" element={<Checkout />} />
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/products/:id" element={<Product />} />
-
+        <Route path="/user/account" element={<Account />} />
+        <Route path="/user/purchase" element={<Purchase />} />
         {/* <Route exact path="/cart" element={<Cart />} /> */}
       </Routes>
       <LineBtn />

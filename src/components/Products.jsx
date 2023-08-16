@@ -301,7 +301,7 @@ const Products = () => {
         /> */}
         <div className="text-[#502314] flex flex-col justify-center text-center items-center p-4">
           <div>
-            <h2 className="text-left  text-2xl font-bold">Category</h2>
+            <h2 className="text-left mb-4 text-2xl font-bold">Category</h2>
           </div>
           <div className="grid grid-cols-5 gap-4  " role="group">
             <button
@@ -378,7 +378,7 @@ const Products = () => {
             </div>
             <h1 className="py-2 px-4">Sort By</h1>
             <select
-              className="bg-[#502314] text-white text-sm py-2 px-4 rounded inline-flex items-center"
+              className="bg-[#502314] text-white text-sm px-4 rounded inline-flex items-center"
               value={sortBy}
               onChange={(e) =>
                 dispatch({ type: "SORT", payload: e.target.value })
@@ -392,7 +392,7 @@ const Products = () => {
             <div className="flex md:flex-row md:justify-center flex-col items-center">
               <h1 className="py-2 px-4">Product Ratings</h1>
               <select
-                className="bg-[#502314] text-white text-sm py-2 px-4 rounded inline-flex items-center"
+                className="bg-[#502314] text-white text-sm py-1 px-4 rounded inline-flex items-center"
                 value={option}
                 onChange={(e) => setOption(e.target.value)}
               >
