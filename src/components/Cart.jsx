@@ -10,19 +10,12 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import cart from "../../public/image/ic068.png";
 import toast, { Toaster } from "react-hot-toast";
 import { addItem, removeItem, clearCart } from "../feature/cart/cartSlice2";
+import Lottie from "lottie-react";
+import animationData from "../../public/image/animation_llbwoknm.json";
 const Cart = () => {
-  // const product = useSelector((state) => state.handleCart);
   const dispatch = useDispatch();
-  const RemoveNotify = () => toast.error("Product removed from cart");
+
   const product = useSelector((state) => state.cart);
-
-  // const addItem = (product) => {
-  //   dispatch({ type: "ADDITEM", payload: product });
-  // };
-
-  // const removeItem = (product) => {
-  //   dispatch({ type: "REMOVEITEM", payload: product });
-  // };
 
   const [summary, setSummary] = useState({
     totalPrice: 0,
@@ -50,12 +43,9 @@ const Cart = () => {
   if (product < 1 || !product) {
     return (
       <div className="font-Kanit h-screen w-screen flex flex-col items-center justify-center">
-        <img
-          src={cart}
-          width={300}
-          height={300}
-          className="bg-[#F5EBDC] p-2 rounded-full "
-        />
+        <div style={{ height: 200, width: 200 }}>
+          <Lottie animationData={animationData} />
+        </div>
         <h1 className="text-center  md:p-20 mx-auto text-[#8B4513]">
           No item in cart
         </h1>

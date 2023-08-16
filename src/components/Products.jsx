@@ -192,7 +192,6 @@ const Products = () => {
   const ShowProduct = () => {
     return (
       <div className="w-full  font-Kanit text-[#502314]">
-        <div className=""></div>
         <hr className="my-4 mx-8" />
         <div className="w-fit mx-auto grid grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 px-4 py-16 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
           {filteredUsers.map((product) => {
@@ -311,7 +310,7 @@ const Products = () => {
                 setonSale(false);
                 setFilter(data);
               }}
-              className="text-md flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2  font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="text-md flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2  font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#502314] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
               <AiFillShop className="text-[#502314]" />
               All
@@ -322,7 +321,7 @@ const Products = () => {
                 setonSale(false);
                 filterProduct("men's clothing");
               }}
-              className="flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#502314] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
               <GiShirt className="text-[#502314]" />
               Men
@@ -332,7 +331,7 @@ const Products = () => {
                 setonSale(false);
                 filterProduct("women's clothing");
               }}
-              className="flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#502314] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
               <GiLargeDress className="text-[#502314]" />
               Woman
@@ -342,7 +341,7 @@ const Products = () => {
                 setonSale(false);
                 filterProduct("jewelery");
               }}
-              className=" flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className=" flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#502314] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
               <GiDiamondRing className="text-[#502314]" />
               Jewelery
@@ -352,7 +351,7 @@ const Products = () => {
                 setonSale(true);
                 filterProduct("electronics");
               }}
-              className=" flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className=" flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#502314] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
               <HiOutlineDesktopComputer className="text-[#502314] items-center text-center justify-center" />
               Electronic
@@ -408,7 +407,7 @@ const Products = () => {
             </div>
             <div>
               <Tooltip title="Clear filter">
-                <button className="text-red-500 p-4" onClick={clearFilter}>
+                <button className="text-[#502314] p-4" onClick={clearFilter}>
                   <AiOutlineClear size={20} />
                 </button>
               </Tooltip>

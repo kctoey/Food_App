@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Logo from "../../public/image/logonavbar.png";
 import { signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
@@ -7,10 +7,11 @@ import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import profile from "../../public/image/profile.png";
+import CartItemBox from "./CartItemBox";
 const Navbar = () => {
   const cart = useSelector((state) => state.cart);
   const [user] = useAuthState(auth);
-  console.log(user);
+
   const signUserOut = async () => {
     await signOut(auth);
   };
@@ -53,14 +54,17 @@ const Navbar = () => {
                   >
                     Sign Out
                   </button>
-                  <div>
-                    <div className="flex flex-row ">
+                  <div className="invisible lg:visible z-10">
+                    <CartItemBox />
+                  </div>
+                  <div className="flex flex-row visible lg:invisible  z-20">
+                    <div>
                       <Link to={`/cart`}>
                         <AiOutlineShoppingCart size={"2rem"} />
                       </Link>
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#D62300]">
-                        <p className="text-white">{cart.length ?? "0"}</p>
-                      </div>
+                    </div>
+                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#D62300]">
+                      <p className="text-white">{cart.length ?? "0"}</p>
                     </div>
                   </div>
                 </div>
