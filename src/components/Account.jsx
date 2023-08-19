@@ -49,6 +49,12 @@ const Account = () => {
   }
   function handleSubmit() {
     updateuser(name);
+    console.log("click");
+    // const interval = setInterval(() => {
+    //   window.location.reload();
+    // }, 3000);
+
+    // return () => clearInterval(interval);
   }
   function handleClick() {
     upload(photo, auth.currentUser, setLoading);
