@@ -23,20 +23,11 @@ const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
-  const notify = () => toast.success("Add to cart");
-  const cart = useSelector((state) => state.cart);
-  const user = useSelector((state) => state.user);
-  console.log(user.user);
-  const dispatch = useDispatch();
-  // const addItem = (product) => {
-  //   dispatch({ type: "ADDITEM", payload: product });
-  // };
 
-  // const dispatch = useDispatch();
-  // const addProduct = (product) => {
-  //   dispatch(addCart(product));
-  //   notify();
-  // };
+  const user = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const getProduct = async () => {
       setLoading(true);

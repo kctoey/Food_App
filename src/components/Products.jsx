@@ -292,7 +292,7 @@ const Products = () => {
           })}
         </Carousel>
       </div>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center ">
         {/* <input
           type="text"
           onChange={(e) => setSearchValue(e.target.value)}

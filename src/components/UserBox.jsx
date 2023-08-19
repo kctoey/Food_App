@@ -11,6 +11,8 @@ import { Routes, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 const UserBox = () => {
   const [user] = useAuthState(auth);
+  const [open, setOpen] = useState(false);
+
   let navigate = useNavigate();
   const path = useLocation().pathname;
 
@@ -24,7 +26,6 @@ const UserBox = () => {
     }
   };
 
-  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   let menuRef = useRef();
   useEffect(() => {
@@ -43,10 +44,13 @@ const UserBox = () => {
     <>
       {user ? (
         <div ref={menuRef}>
-          <div onClick={() => setOpen(true)}>
+          <div
+            className="flex flex-row items-center"
+            onClick={() => setOpen(!open)}
+          >
             <img
               className="w-6 h-6 md:w-12 md:h-12 rounded-full md:scale-50"
-              src={profile}
+              src={user.photoURL ?? profile}
               width="40"
               height="40"
             />
@@ -54,19 +58,34 @@ const UserBox = () => {
           </div>
           <div>
             {open && (
-              <div className="z-20 bg-white absolute right-0 top-16">
-                <div className="lg:w-80 h-full shadow-lg rounded-xl p-4">
+              <div className="z-20 bg-white absolute right-36 top-16 ">
+                <div className="lg:w-40 h-full shadow-lg rounded-xl p-4">
                   <div className="flex flex-col    ">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col ">
                       <Link to="/user/account">
-                        <button>My account</button>
+                        <button
+                          onClick={() => setOpen(false)}
+                          className="hover:text-gray-400"
+                        >
+                          My account
+                        </button>
                       </Link>
                       <Link to="/user/purchase">
-                        <button>Purchase history</button>
+                        <button
+                          onClick={() => setOpen(false)}
+                          className="hover:text-gray-400"
+                        >
+                          Purchase history
+                        </button>
                       </Link>
-                      <button onClick={() => dispatch(signUserOut())}>
-                        Sign Out
-                      </button>
+                      <Link to="/">
+                        <button
+                          className="hover:text-gray-400"
+                          onClick={() => dispatch(signUserOut())}
+                        >
+                          Sign Out
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

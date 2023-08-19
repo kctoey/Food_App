@@ -8,7 +8,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,11 +27,12 @@ const firebaseConfig = {
 // your firebase config here
 
 //init firebase app
-initializeApp(firebaseConfig);
 
+const app = initializeApp(firebaseConfig);
 //init services
 const auth = getAuth();
-
+const db = getFirestore(app);
+export { db };
 export {
   auth,
   createUserWithEmailAndPassword,
@@ -42,5 +43,5 @@ export {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+
 export const provider = new GoogleAuthProvider();

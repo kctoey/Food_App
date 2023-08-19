@@ -4,24 +4,26 @@ import { useSelector, useDispatch } from "react-redux";
 import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
-import { BsCheckCircle } from "react-icons/bs";
+import animationData from "../../public/image/animation_llenkk18.json";
+import Lottie from "lottie-react";
+
 import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "../config/firebase";
+import { Button, TextField } from "@mui/material";
 
 export const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const username = useSelector((state) => state.user.value);
   const [user] = useAuthState(auth);
 
-  const register = () => {
-    if (!name) {
-      return alert("Please enter a full name");
-    }
+  const register = (e) => {
+    e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userAuth) => {
         updateProfile(userAuth.user, {
@@ -36,70 +38,96 @@ export const RegisterPage = () => {
               })
             )
           )
-          .catch((error) => {
-            alert("user not updated");
+          .catch((err) => {
+            console.log(err);
+            setError(err.message);
           });
       })
       .catch((err) => {
-        alert(err);
+        console.log(err);
+        setError(err.message);
       });
+  };
+
+  if (user) {
+    console.log(user);
+    return (
+      <div className="bg-[#F5EBDC] w-screen h-screen p-20  font-Kanit">
+        <div className="flex flex-col justify-center items-center w-full h-full">
+          <h1 className="text-center text-xl  mx-auto text-[#8B4513]">
+            Your registration has been successful.
+          </h1>
+          <div style={{ padding: 10, height: 200, width: 200 }}>
+            <Lottie loop={false} animationData={animationData} />
+          </div>
+          <Link to="/">
+            <button className=" rounded-md bg-[#8B4513] p-4 text-white ">
+              Back to homepage
+            </button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+  const style = {
+    "& label.Mui-focused": {
+      color: "brown",
+    },
+    "& .MuiOutlinedInput-root": {
+      "&.Mui-focused fieldset": {
+        borderColor: "brown",
+      },
+    },
   };
   return (
     <div className="bg-[#F5EBDC] w-screen h-screen pt-20 font-Kanit">
       <div className=" bg-white rounded-lg w-80 mx-auto p-8 space-y-2">
         <div className="text-center">
-          <h1 className="font-bold">สมัครสมาชิก</h1>
+          <h1 className="font-bold">Register</h1>
         </div>
 
         <div className="flex flex-row justify-center space-x-2 py-4">
-          {!user ? (
-            <div>
-              <form className="space-y-4">
-                <input
-                  className="w-full h-10 border-solid border-2 border-[#e7c695] rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 pl-2 "
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Full name (required for registering)"
-                  type="text"
-                />
+          <form onSubmit={register} className="space-y-4">
+            <TextField
+              sx={style}
+              fullWidth
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Full name (required for registering)"
+              type="text"
+            />
 
-                <input
-                  className="w-full h-10 border-solid border-2 border-[#e7c695] rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 pl-2"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email"
-                  type="email"
-                />
-                <input
-                  className="w-full h-10 border-solid border-2 border-[#e7c695] rounded-md focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 pl-2"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Password"
-                  type="password"
-                />
-              </form>
-              <div className="pt-4 text-center">
-                <button
-                  className="hover:opacity-75 bg-[#502314]  text-sm text-white py-2 px-4 rounded-full"
-                  onClick={register}
-                >
-                  ยืนยันการสมัคร
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="flex flex-col justify-center space-y-4 items-center">
-              <div>
-                <BsCheckCircle className="h-14 w-14 drop-shadow-lg text-green-500 text-center " />
-              </div>
-              <h1 className="py-4 text-2xl">สมัครสมาชิกสำเร็จ</h1>
-              <div className="hover:opacity-75 bg-[#502314] text-center text-sm text-white py-1 px-3 rounded-full">
-                <button className="">
-                  <Link to="/">กลับสู่หน้าหลัก</Link>
-                </button>
-              </div>
-            </div>
-          )}
+            <TextField
+              sx={style}
+              fullWidth
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              type="email"
+            />
+            <TextField
+              sx={style}
+              fullWidth
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              type="password"
+            />
+            {error && (
+              <p className="text-red-500 text-sm">{error.split(":")[1]}</p>
+            )}
+            <Button
+              style={{ backgroundColor: "#8B4513" }}
+              fullWidth
+              variant="contained"
+              type="submit"
+            >
+              Register Now
+            </Button>
+          </form>
         </div>
       </div>
     </div>

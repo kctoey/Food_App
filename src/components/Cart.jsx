@@ -40,13 +40,13 @@ const Cart = () => {
   useEffect(() => {
     calculateSummary();
   }, [product]);
-  if (product < 1 || !product) {
+  if (!product) {
     return (
       <div className="font-Kanit h-screen w-screen flex flex-col items-center justify-center">
         <div style={{ height: 200, width: 200 }}>
           <Lottie animationData={animationData} />
         </div>
-        <h1 className="text-center  md:p-20 mx-auto text-[#8B4513]">
+        <h1 className="text-center text-xl  md:p-20 mx-auto text-[#8B4513]">
           No item in cart
         </h1>
         <Link to={`/`}>

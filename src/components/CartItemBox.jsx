@@ -35,7 +35,7 @@ const CartItemBox = () => {
         </div>
         <div>
           {open && (
-            <div className="z-20 bg-white absolute right-0 top-16">
+            <div className="z-20 bg-white absolute right-4 top-16">
               <div className="lg:w-80 h-full shadow-lg rounded-xl p-4">
                 <div className="flex flex-col    ">
                   <div>
@@ -44,7 +44,7 @@ const CartItemBox = () => {
                         return (
                           <div
                             key={productincart.id}
-                            className="flex flex-row border-b-gray-100 border-b-2 w-full h-full"
+                            className="hover:bg-gray-100 flex flex-row border-b-gray-100 border-b-2 w-full h-full"
                           >
                             <div className="w-16 py-2">
                               <img
@@ -110,7 +110,7 @@ const CartItemBox = () => {
                             onClick={() => setOpen(false)}
                             className="bg-[#502314] text-white py-2 px-4 rounded"
                           >
-                            Go to cart
+                            View my cart
                           </button>
                         </div>
                       </Link>

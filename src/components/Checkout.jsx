@@ -6,11 +6,18 @@ import { Toaster, toast } from "react-hot-toast";
 import Lottie from "lottie-react";
 import animationData from "../../public/image/animation_llbvl66r.json";
 import { Link } from "react-router-dom";
+import { auth, db } from "../config/firebase";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
 const Checkout = () => {
   const product = useSelector((state) => state.cart);
+  const [user] = useAuthState(auth);
+
   const [start, setStart] = useState(false);
   const dispatch = useDispatch();
-  console.log(product);
+  const [date, setDate] = useState(new Date().toLocaleDateString());
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
+
   const [summary, setSummary] = useState({
     totalPrice: 0,
     vat: 0,
@@ -34,22 +41,43 @@ const Checkout = () => {
     calculateSummary();
   }, [product]);
   const notify = () => toast.success("Payment suscessfully");
-  const handleClick = () => {
+
+  //save order to firebase
+  const handleAddData = async () => {
+    await addDoc(collection(db, "order"), {
+      product,
+      userId: user.uid,
+      date,
+      time,
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+
     dispatch(clearAllCart());
     setStart(true);
-    notify();
   };
+
   return (
     <div className="bg-white w-screen h-screen pt-20 font-Kanit flex flex-col justify-center items-center">
       {start ? (
         <>
           <h1>Payment Successful! Your order has been placed</h1>
           <Lottie loop={false} animationData={animationData} />
-          <Link to={`/`}>
-            <button className="w-64 rounded-md bg-[#8B4513] p-4 text-white ">
-              Back to homepage
-            </button>
-          </Link>
+
+          <div className="p-2">
+            <Link to={`/user/purchase`}>
+              <button className="w-64 rounded-md bg-[#8B4513] p-2 text-white ">
+                View your order
+              </button>
+            </Link>
+          </div>
+          <div className="p-2">
+            <Link to={`/`}>
+              <button className="w-64 rounded-md bg-[#8B4513] p-2 text-white ">
+                Back to homepage
+              </button>
+            </Link>
+          </div>
         </>
       ) : (
         <>
@@ -58,7 +86,9 @@ const Checkout = () => {
             <p>Total amount : ${summary.subtotal.toFixed(2)}</p>
           </div>
           <img width={300} height={300} src={promtpay} alt="" />
-          <button onClick={handleClick}> Confirm payment</button>
+          <button onClick={handleAddData}>Add</button>
+
+          {/* <button onClick={handleClick}> Confirm payment</button> */}
         </>
       )}
     </div>

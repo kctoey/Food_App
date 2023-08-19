@@ -83,9 +83,7 @@ export const LogInPage = () => {
                   type="password"
                 />
                 {error && (
-                  <p className="text-red-500 text-sm">
-                    {error.split("Error ")[1]}
-                  </p>
+                  <p className="text-red-500 text-sm">{error.split(":")[1]}</p>
                 )}
                 <div className="text-center">
                   <Button
