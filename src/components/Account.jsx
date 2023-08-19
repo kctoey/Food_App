@@ -14,7 +14,7 @@ const Account = () => {
   const [loading, setLoading] = useState(false);
   //updatename
   const updateuser = async () => {
-    updateProfile(auth.currentUser, {
+    await updateProfile(auth.currentUser, {
       displayName: name,
     })
       .then(() => {
