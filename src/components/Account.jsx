@@ -35,7 +35,6 @@ const Account = () => {
       photoURL,
     });
     setLoading(false);
-    alert("Upload file");
   }
   function handleChange(e) {
     if (e.target.files[0]) {
@@ -49,12 +48,6 @@ const Account = () => {
   }
   function handleSubmit() {
     updateuser(name);
-    console.log("click");
-    // const interval = setInterval(() => {
-    //   window.location.reload();
-    // }, 3000);
-
-    // return () => clearInterval(interval);
   }
   function handleClick() {
     upload(photo, auth.currentUser, setLoading);
