@@ -17,9 +17,7 @@ const Navbar = () => {
   const signUserOut = async () => {
     await signOut(auth);
   };
-  if (!user) {
-    return <></>;
-  }
+
   return (
     <div className="bg-[#F5EBDC] fixed mx-auto w-full h-[60px] shadow-lg font-Kanit z-10 ">
       <div className="flex flex-row justify-between ">
@@ -44,22 +42,12 @@ const Navbar = () => {
             ) : (
               <div>
                 <div className="flex flex-row justify-center items-center  md:space-x-8 text-sm ">
-                  <div className="invisible lg:visible z-10">
+                  <div className=" z-10">
                     <UserBox />
                   </div>
 
-                  <div className="invisible lg:visible z-10">
+                  <div className=" z-10">
                     <CartItemBox />
-                  </div>
-                  <div className="flex flex-row visible lg:invisible  z-20">
-                    <div>
-                      <Link to={`/cart`}>
-                        <AiOutlineShoppingCart size={"2rem"} />
-                      </Link>
-                    </div>
-                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#D62300]">
-                      <p className="text-white">{cart.length ?? "0"}</p>
-                    </div>
                   </div>
                 </div>
               </div>

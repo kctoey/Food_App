@@ -24,9 +24,7 @@ export const LogInPage = () => {
   const signInWithGoogle = async () => {
     const result = await signInWithPopup(auth, provider);
   };
-  const signUserOut = async () => {
-    await signOut(auth);
-  };
+
   const loginToApp = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
@@ -121,21 +119,8 @@ export const LogInPage = () => {
                   <Link to="/">Back to home page</Link>
                 </button>
               </div>
-              {/* <button
-                className="bg-[#502314] hover:opacity-75 text-sm text-white py-1 px-3 rounded-full"
-                onClick={signUserOut}
-              >
-                ออกจากระบบ
-              </button> */}
             </div>
           )}
-
-          {/* <button
-            className="bg-[#502314]  text-sm text-white py-1 px-3 rounded-full"
-            onClick={() => dispatch(logout())}
-          >
-            Login
-          </button> */}
         </div>
       </div>
     </div>

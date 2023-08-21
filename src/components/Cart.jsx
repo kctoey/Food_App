@@ -40,7 +40,7 @@ const Cart = () => {
   useEffect(() => {
     calculateSummary();
   }, [product]);
-  if (!product) {
+  if (!product || product.length === 0) {
     return (
       <div className="font-Kanit h-screen w-screen flex flex-col items-center justify-center">
         <div style={{ height: 200, width: 200 }}>
@@ -81,7 +81,7 @@ const Cart = () => {
 
                   <button
                     className="text-red-500 text-sm md:invisible visible"
-                    onClick={() => dispatch(reset())}
+                    onClick={() => dispatch(clearCart(productincart))}
                   >
                     Remove
                   </button>

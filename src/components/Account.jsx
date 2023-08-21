@@ -104,7 +104,7 @@ const Account = () => {
                 </Button>
               </div>
 
-              <div className="text-xl p-4 flex flex-col justify-center">
+              <div className="text-xl p-4 flex flex-col justify-center ">
                 {edit ? (
                   <form
                     onSubmit={handleSubmit}
@@ -123,7 +123,7 @@ const Account = () => {
                     </button>
                   </form>
                 ) : (
-                  <div className="flex flex-row justify-center  py-4">
+                  <div className="flex flex-row   py-4">
                     {" "}
                     <p>Display Name: {auth.currentUser.displayName ?? ""}</p>
                     <button
@@ -135,7 +135,7 @@ const Account = () => {
                   </div>
                 )}
 
-                <p>E-mail: {auth.currentUser.email ?? ""}</p>
+                <photo>E-mail: {auth.currentUser.email ?? ""}</photo>
               </div>
             </div>
           </div>

@@ -9,16 +9,8 @@ import { MdArrowBackIos } from "react-icons/md";
 import toast, { Toaster } from "react-hot-toast";
 import { addItem } from "../feature/cart/cartSlice2";
 import LoginDialog from "./LoginDialog";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Button } from "@mui/material";
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#8B4513",
-    },
-  },
-});
 const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
@@ -27,6 +19,7 @@ const Product = () => {
   const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
+  const notify = () => toast.success("Add product");
 
   useEffect(() => {
     const getProduct = async () => {
@@ -64,8 +57,8 @@ const Product = () => {
     return (
       <div className="lg:p-20 pt-20 px-8 justify-center items-center w-full flex lg:flex-row flex-col">
         <Link to="/">
-          <button className="absolute left-4 lg:left-8 top-16 lg:top-20  rounded-xl border border-[#8B4513] bg-white ml-4 px-4 py-2 text-[#8B4513] text-center">
-            <MdArrowBackIos />
+          <button className="absolute left-4 lg:left-8 top-16 lg:top-20   bg-white ml-4 px-4 py-2 text-[#8B4513] text-center">
+            <MdArrowBackIos size={30} />
           </button>
         </Link>
         <div className="p-8 lg:w-60">
@@ -76,35 +69,32 @@ const Product = () => {
             width="280px"
           />
         </div>
-        <div className="p-8 lg:w-1/2">
-          <h4 className="py-4 text-gray-500 uppercase ">{product.category}</h4>
-          <h1 className="py-4 text-2xl">{product.title}</h1>
-          <p className="flex flex-row justify-start text-center items-center">
+        <div className="md:p-8 p-4 lg:w-1/2">
+          <h4 className="p-4 text-gray-500 uppercase ">{product.category}</h4>
+          <h1 className="p-4 text-base md:text-2xl">{product.title}</h1>
+          <p className="md:p-4 px-4 flex flex-row justify-start text-center items-center">
             <span>
               <FaStar className="text-yellow-500 " />
             </span>{" "}
             {product.rating && product.rating.rate}
           </p>
-          <h3 className="py-4 text-[#8B4513] text-3xl">${product.price}</h3>
-          <p className="py-4">{product.description}</p>
+          <h3 className="p-4 text-[#8B4513] text-3xl">${product.price}</h3>
+          <p className="p-4 text-sm md:text-base">{product.description}</p>
           {user.user !== "" ? (
-            <>
-              <button
-                className="uppercase w-40 rounded-md border border-[#8B4513] bg-white ml-4 px-4 py-2 text-[#8B4513] text-center"
-                onClick={() => dispatch(addItem(product))}
+            <div className="pl-4 pt-4">
+              <Button
+                style={{ backgroundColor: "#8B4513" }}
+                onClick={() => {
+                  dispatch(addItem(product));
+                  notify();
+                }}
                 color="primary"
-                variant="outlined"
+                variant="contained"
               >
                 Add to Cart
                 <Toaster position="top-center" reverseOrder={true} />
-              </button>
-              <Link
-                to="/cart"
-                className="uppercase w-40 rounded-md border border-[#8B4513] bg-white ml-4 px-4 py-2 text-[#8B4513] text-center"
-              >
-                Go to cart
-              </Link>
-            </>
+              </Button>
+            </div>
           ) : (
             <LoginDialog />
           )}

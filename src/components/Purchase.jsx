@@ -16,15 +16,18 @@ const Purchase = () => {
   }, []);
   const loaddata = async () => {
     setLoading(true);
-    await getDocs(collection(db, "order")).then((query) => {
-      console.log(query.docs[0]);
-      const newData = query.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setData(newData);
-    });
-    setLoading(false).catch((err) => console.log(err));
+    await getDocs(collection(db, "order"))
+      .then((query) => {
+        console.log(query.docs[0]);
+        const newData = query.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setData(newData);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
   const findMatchingItems = (data, user) => {
     const matchingItems = [];
@@ -53,7 +56,7 @@ const Purchase = () => {
   const ShowProduct = () => {
     return (
       <div className="bg-white w-screen h-full pt-20 lg:pt-60 font-Kanit flex flex-col justify-center items-center ">
-        <h1 className="text-lg">You have {result.length} order </h1>
+        <h1 className="text-xl">You have {result.length} order </h1>
         <hr />
         {result ? (
           result.map((item) => (
@@ -95,6 +98,7 @@ const Purchase = () => {
                   </table>
                 </div>
               ))}
+              <hr />
             </div>
           ))
         ) : (

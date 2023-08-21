@@ -54,14 +54,17 @@ const UserBox = () => {
               width="40"
               height="40"
             />
-            <span className="text-sm ">{user?.displayName}</span>
+            <span className="text-sm px-4">{user?.displayName}</span>
           </div>
           <div>
             {open && (
-              <div className="z-20 bg-white absolute right-36 top-16 ">
-                <div className="lg:w-40 h-full shadow-lg rounded-xl p-4">
+              <div className="lg:z-20 bg-white absolute right-0  lg:right-36 top-16 ">
+                <div className="w-screen h-screen md:w-40   md:h-full shadow-lg rounded-xl p-4">
                   <div className="flex flex-col    ">
-                    <div className="flex flex-col ">
+                    <div
+                      className="flex flex-col text-xl space-y-8 md:text-base
+                      md:space-y-0"
+                    >
                       <Link to="/user/account">
                         <button
                           onClick={() => setOpen(false)}

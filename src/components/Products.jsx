@@ -161,17 +161,9 @@ const Products = () => {
 
     return stars;
   };
-  // function random_item(items) {
-  //   return items[Math.floor(Math.random() * items.length)];
-  // }
-  // const flashsaleProduct = random_item(data);
-  const discount5 = (price) => {
-    const discount = price * 0.05;
-    return (price - discount).toFixed(2);
-  };
+
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
     },
@@ -191,9 +183,9 @@ const Products = () => {
 
   const ShowProduct = () => {
     return (
-      <div className="w-full  font-Kanit text-[#502314]">
+      <div className="w-full  font-Kanit text-[#502314] ">
         <hr className="my-4 mx-8" />
-        <div className="w-fit mx-auto grid grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 px-4 py-16 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+        <div className="w-fit mx-auto grid grid-cols-2 xl:grid-cols-4 lg:grid-cols-3  justify-items-center justify-center gap-y-4 gap-x-4 mt-10 mb-5">
           {filteredUsers.map((product) => {
             return (
               <>

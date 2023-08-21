@@ -82,11 +82,24 @@ const Checkout = () => {
       ) : (
         <>
           <div>
-            <h1>Promtpay Payment</h1>
-            <p>Total amount : ${summary.subtotal.toFixed(2)}</p>
+            <h1 className="text-xl">Promtpay Payment</h1>
+            <p className="py-4">
+              Total amount : ${summary.subtotal.toFixed(2)}
+            </p>
           </div>
-          <img width={300} height={300} src={promtpay} alt="" />
-          <button onClick={handleAddData}>Add</button>
+          <img
+            className="py-4"
+            width={300}
+            height={300}
+            src={promtpay}
+            alt=""
+          />
+          <button
+            className="w-64 rounded-md bg-[#8B4513] p-2 text-white "
+            onClick={handleAddData}
+          >
+            Confirm
+          </button>
 
           {/* <button onClick={handleClick}> Confirm payment</button> */}
         </>
