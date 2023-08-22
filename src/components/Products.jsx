@@ -183,7 +183,7 @@ const Products = () => {
 
   const ShowProduct = () => {
     return (
-      <div className="w-full  font-Kanit text-[#502314] ">
+      <div className="w-full  font-Kanit text-[#8B4513] ">
         <hr className="my-4 mx-8" />
         <div className="w-fit mx-auto grid grid-cols-2 xl:grid-cols-4 lg:grid-cols-3  justify-items-center justify-center gap-y-4 gap-x-4 mt-10 mb-5">
           {filteredUsers.map((product) => {
@@ -228,7 +228,7 @@ const Products = () => {
   return (
     <div>
       <div className=" m-8 font-Kanit">
-        <h2 className="text-[#502314] text-center text-2xl font-bold py-4">
+        <h2 className="text-[#8B4513] text-center text-2xl font-bold py-4">
           New Product
         </h2>
 
@@ -246,7 +246,7 @@ const Products = () => {
             return (
               <div
                 key={product.id}
-                className="text-[#502314] mx-auto product-card  p-2  w-48 md:w-fit items-center flex flex-col justify-center  bg-white shadow-md  rounded-xl duration-500 mb-6  md:p-4"
+                className="text-[#8B4513] mx-auto product-card  p-2  w-48 md:w-fit items-center flex flex-col justify-center  bg-white shadow-md  rounded-xl duration-500 mb-6  md:p-4"
               >
                 <Link
                   to={`/products/${product.id}`}
@@ -291,7 +291,7 @@ const Products = () => {
           value={searchValue}
           placeholder="Search by name"
         /> */}
-        <div className="text-[#502314] flex flex-col justify-center text-center items-center p-4">
+        <div className="text-[#8B4513] flex flex-col justify-center text-center items-center p-4">
           <div>
             <h2 className="text-left mb-4 text-2xl font-bold">Category</h2>
           </div>
@@ -302,9 +302,9 @@ const Products = () => {
                 setonSale(false);
                 setFilter(data);
               }}
-              className="text-md flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2  font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#502314] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="text-md flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2  font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#8B4513] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
-              <AiFillShop className="text-[#502314]" />
+              <AiFillShop className="text-[#8B4513]" />
               All
             </button>
 
@@ -313,9 +313,9 @@ const Products = () => {
                 setonSale(false);
                 filterProduct("men's clothing");
               }}
-              className="flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#502314] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#8B4513] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
-              <GiShirt className="text-[#502314]" />
+              <GiShirt className="text-[#8B4513]" />
               Men
             </button>
             <button
@@ -323,9 +323,9 @@ const Products = () => {
                 setonSale(false);
                 filterProduct("women's clothing");
               }}
-              className="flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#502314] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#8B4513] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
-              <GiLargeDress className="text-[#502314]" />
+              <GiLargeDress className="text-[#8B4513]" />
               Woman
             </button>
             <button
@@ -333,9 +333,9 @@ const Products = () => {
                 setonSale(false);
                 filterProduct("jewelery");
               }}
-              className=" flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#502314] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className=" flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#8B4513] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
-              <GiDiamondRing className="text-[#502314]" />
+              <GiDiamondRing className="text-[#8B4513]" />
               Jewelery
             </button>
             <button
@@ -343,9 +343,9 @@ const Products = () => {
                 setonSale(true);
                 filterProduct("electronics");
               }}
-              className=" flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#502314] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className=" flex flex-col justify-center items-center py-2.5 px-5 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-md b hover:bg-gray-100 hover:text-[#8B4513] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
-              <HiOutlineDesktopComputer className="text-[#502314] items-center text-center justify-center" />
+              <HiOutlineDesktopComputer className="text-[#8B4513] items-center text-center justify-center" />
               Electronic
             </button>
           </div>
@@ -354,7 +354,7 @@ const Products = () => {
         <div className="font-Kanit grid grid-flow-col auto-cols-max items-center text-center justify-center">
           <div className="flex md:flex-row md:justify-center flex-col px-2 space-y-4 md:space-y-0">
             <div className="flex md:flex-row justify-center items-center text-center">
-              <AiOutlineSearch size={20} className="w-16 text-[#502314]" />
+              <AiOutlineSearch size={20} className="w-16 text-[#8B4513]" />
 
               <TextField
                 onChange={(e) => setSearchValue(e.target.value)}
@@ -368,23 +368,27 @@ const Products = () => {
                 }}
               />
             </div>
-            <h1 className="py-2 px-4">Sort By</h1>
+            <h1 className="pt-2 px-4">Sort By</h1>
             <select
-              className="bg-[#502314] text-white text-sm px-4 rounded inline-flex items-center"
+              className="bg-[#8B4513] text-white text-sm  px-4 rounded inline-flex items-center"
               value={sortBy}
               onChange={(e) =>
                 dispatch({ type: "SORT", payload: e.target.value })
               }
             >
+              <option value="" disabled>
+                Select Price Option
+              </option>
               <option value="PRICE_HIGH_TO_LOW">Price - High to Low</option>
               <option value="PRICE_LOW_TO_HIGH">Price - Low to High</option>
               <option value="RATE_HIGH_TO_LOW">Rate - High to Low</option>
               <option value="RATE_LOW_TO_HIGH">Rate - Low to High</option>
             </select>
+
             <div className="flex md:flex-row md:justify-center flex-col items-center">
               <h1 className="py-2 px-4">Product Ratings</h1>
               <select
-                className="bg-[#502314] text-white text-sm py-1 px-4 rounded inline-flex items-center"
+                className="bg-[#8B4513] text-white text-sm py-1 px-4 rounded inline-flex items-center"
                 value={option}
                 onChange={(e) => setOption(e.target.value)}
               >
@@ -399,7 +403,7 @@ const Products = () => {
             </div>
             <div>
               <Tooltip title="Clear filter">
-                <button className="text-[#502314] p-4" onClick={clearFilter}>
+                <button className="text-[#8B4513] p-4" onClick={clearFilter}>
                   <AiOutlineClear size={20} />
                 </button>
               </Tooltip>

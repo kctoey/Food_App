@@ -116,7 +116,7 @@ export const LogInPage = () => {
                 <p>
                   Are you a new customer?
                   <Link to="/register">
-                    <button className="underline decoration-1 text-[#502314] font-bold line pb-4 hover:opacity-75">
+                    <button className="underline decoration-1 text-[#8B4513] font-bold line pb-4 hover:opacity-75">
                       Register now
                     </button>
                   </Link>
@@ -132,7 +132,7 @@ export const LogInPage = () => {
                 <BsCheckCircle className="h-14 w-14 drop-shadow-lg text-green-500 text-center " />
               </div>
               <h1 className="py-4 text-2xl">Success login</h1>
-              <div className="hover:opacity-75 bg-[#502314] text-center text-sm text-white py-1 px-3 rounded-full">
+              <div className="hover:opacity-75 bg-[#8B4513] text-center text-sm text-white py-1 px-3 rounded-full">
                 <button className="">
                   <Link to="/">Back to home page</Link>
                 </button>

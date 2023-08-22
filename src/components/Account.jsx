@@ -83,7 +83,7 @@ const Account = () => {
             <h1 className="text-2xl">My Profile</h1>
             <hr />
             <div className="py-4 flex flex-col lg:flex-row items-center">
-              <div className="w-80 h-full flex flex-col justify-center text-center p-4">
+              <div className="w-80 sm:h-full flex flex-col justify-center text-center p-4">
                 <div className="p-4">
                   <img
                     className=" rounded-full md:w-full  md:h-full"

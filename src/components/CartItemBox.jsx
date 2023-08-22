@@ -108,7 +108,7 @@ const CartItemBox = () => {
                         <div className="p-2">
                           <button
                             onClick={() => setOpen(false)}
-                            className="bg-[#502314] text-white py-2 px-4 rounded"
+                            className="bg-[#8B4513] text-white py-2 px-4 rounded"
                           >
                             View my cart
                           </button>

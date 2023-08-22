@@ -33,7 +33,7 @@ const Navbar = () => {
               <div className="py-4">
                 <Link to={`/login`}>
                   <div className="text-center w-20 ">
-                    <button className="bg-[#502314] items-center  text-white  px-3 rounded-full md:py-1 hover:shadow-sm">
+                    <button className="bg-[#8B4513] items-center  text-white  px-3 rounded-full md:py-1 hover:shadow-sm">
                       Sign In
                     </button>
                   </div>
