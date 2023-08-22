@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -28,7 +29,7 @@ export default function AlertDialog() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div>
+      <div className="pl-4">
         <Button color="primary" variant="outlined" onClick={handleClickOpen}>
           Add to Cart
         </Button>

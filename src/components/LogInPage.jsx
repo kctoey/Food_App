@@ -12,13 +12,14 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "../config/firebase";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import GoogleButton from "react-google-button";
-import { Button, TextField } from "@mui/material";
+import { Button, InputAdornment, TextField } from "@mui/material";
 export const LogInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const signInWithGoogle = async () => {
@@ -78,8 +79,25 @@ export const LogInPage = () => {
                   label="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  type="password"
+                  type={visible ? "text" : "password"}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <div
+                          className="cursor-pointer"
+                          onClick={() => setVisible(!visible)}
+                        >
+                          {visible ? (
+                            <AiOutlineEye />
+                          ) : (
+                            <AiOutlineEyeInvisible />
+                          )}
+                        </div>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
+
                 {error && (
                   <p className="text-red-500 text-sm">{error.split(":")[1]}</p>
                 )}

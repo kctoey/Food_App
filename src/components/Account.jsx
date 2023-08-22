@@ -76,7 +76,7 @@ const Account = () => {
     },
   };
   return (
-    <div className=" bg-white w-screen h-screen pt-40 font-Kanit flex flex-col lg:flex-row justify-center items-center p-20">
+    <div className=" bg-white w-screen h-screen pt-40 font-Kanit flex flex-col lg:flex-row justify-center items-center px-20 sm:p-20">
       {auth?.currentUser ? (
         <>
           <div className="w-full h-full  shadow-md rounded-md p-4">
@@ -86,7 +86,7 @@ const Account = () => {
               <div className="w-80 h-full flex flex-col justify-center text-center p-4">
                 <div className="p-4">
                   <img
-                    className=" rounded-full w-full  h-full"
+                    className=" rounded-full md:w-full  md:h-full"
                     src={auth.currentUser.photoURL ?? profile}
                     width={200}
                     height={200}

@@ -94,7 +94,7 @@ export const RegisterPage = () => {
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Full name (required for registering)"
+              placeholder="Name"
               type="text"
             />
 
