@@ -76,10 +76,10 @@ const Account = () => {
     },
   };
   return (
-    <div className=" bg-white w-screen h-screen pt-40 font-Kanit flex flex-col lg:flex-row justify-center items-center px-20 sm:p-20">
+    <div className=" bg-white w-screen h-screen pt-40 font-Kanit flex flex-col lg:flex-row justify-center items-center  sm:p-20">
       {auth?.currentUser ? (
         <>
-          <div className="w-full h-full  shadow-md rounded-md p-4">
+          <div className="w-full h-full  sm:shadow-md rounded-md p-4">
             <h1 className="text-2xl">My Profile</h1>
             <hr />
             <div className="py-4 flex flex-col lg:flex-row items-center">
@@ -104,7 +104,7 @@ const Account = () => {
                 </Button>
               </div>
 
-              <div className="text-xl p-4 flex flex-col justify-center ">
+              <div className="sm:text-xl p-4 flex flex-col justify-center ">
                 {edit ? (
                   <form
                     onSubmit={handleSubmit}
