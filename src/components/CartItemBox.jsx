@@ -91,7 +91,7 @@ const CartItemBox = () => {
                                 </p>
                                 <p>
                                   {" "}
-                                  ฿{productincart.qty * productincart.price}
+                                  ${productincart.qty * productincart.price}
                                 </p>
                               </div>
                             </div>

@@ -205,9 +205,9 @@ const Products = () => {
                   />
                   <div className="">
                     <h5 className="">{product.title.substring(0, 12)}...</h5>
-                    <p className="">฿{product.price}</p>
+                    <p className="">${product.price}</p>
                     <p> {getStars(product.rating.rate)}</p>
-                    <Link to={`/products/฿{product.id}`} className="">
+                    <Link to={`/products/${product.id}`} className="">
                       <button
                         type="button"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
@@ -249,7 +249,7 @@ const Products = () => {
                 className="text-[#8B4513] mx-auto product-card  p-2  w-48 md:w-fit items-center flex flex-col justify-center  bg-white shadow-md  rounded-xl duration-500 mb-6  md:p-4"
               >
                 <Link
-                  to={`/products/฿{product.id}`}
+                  to={`/products/${product.id}`}
                   className="items-center flex flex-col justify-center"
                 >
                   <img
@@ -266,10 +266,10 @@ const Products = () => {
                       {product.title}
                     </p>
                     <div className="items-center flex flex-col">
-                      <div className=" cursor-auto my-3">฿{product.price}</div>
+                      <div className=" cursor-auto my-3">${product.price}</div>
                       {/* <p className="text-red-500">
                         {" "}
-                        ฿{discount5(product.price)}
+                        ${discount5(product.price)}
                       </p> */}
                       <div>
                         <p className="text-sm text-gray-600 ml-2">
