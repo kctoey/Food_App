@@ -395,10 +395,10 @@ const Products = () => {
                 <option value="" disabled>
                   Select Rating Option
                 </option>
-                <option value="1">1 Star or More</option>
-                <option value="2">2 Stars or More</option>
-                <option value="3">3 Stars or More</option>
-                <option value="4">4 Stars or More</option>
+                <option value="1">more than 1 Star </option>
+                <option value="2">more than 2 Star</option>
+                <option value="3">more than 3 Star</option>
+                <option value="4">more than 4 Star</option>
               </select>
             </div>
             <div>
