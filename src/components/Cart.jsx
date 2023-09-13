@@ -97,7 +97,7 @@ const Cart = () => {
 
                 <div className="p-2  ">
                   <p className="md:text-left text-right text-gray-500 md:pl-0 ">
-                    ${productincart.price}
+                    ฿{productincart.price}
                   </p>
                 </div>
                 <div className="lg:px-20 md:grid md:grid-cols-3 flex md:flex-none text-center ">
@@ -123,13 +123,13 @@ const Cart = () => {
 
                   <div className="px-2 visible md:invisible ">
                     <p className=" ">
-                      ${productincart.qty * productincart.price}
+                      ฿{productincart.qty * productincart.price}
                     </p>
                   </div>
                 </div>
                 <div className="p-2 md:visible invisible ">
                   <p className="text-right pl-16 ">
-                    ${productincart.qty * productincart.price}
+                    ฿{productincart.qty * productincart.price}
                   </p>
                 </div>
               </div>
@@ -172,7 +172,7 @@ const Cart = () => {
                       <p className="text-gray-500">
                         {productincart.qty}X{productincart.price}
                       </p>
-                      <p> ${productincart.qty * productincart.price}</p>
+                      <p> ฿{productincart.qty * productincart.price}</p>
                     </div>
                   </div>
                 </div>
@@ -182,16 +182,16 @@ const Cart = () => {
           <div className="flex flex-row justify-between">
             {" "}
             <h2>Total</h2>
-            <p>$ {summary.totalPrice.toFixed(2)}</p>
+            <p>฿ {summary.totalPrice.toFixed(2)}</p>
           </div>
           <div className="flex flex-row justify-between">
             {" "}
             <h2>Vat 7%</h2>
-            <p>$ {summary.vat.toFixed(2)}</p>
+            <p>฿ {summary.vat.toFixed(2)}</p>
           </div>
           <div className="flex flex-row justify-between font-bold pb-8 text-[#8B4513]">
             <h2>Subtotal</h2>
-            <p>$ {summary.subtotal.toFixed(2)}</p>
+            <p>฿ {summary.subtotal.toFixed(2)}</p>
           </div>
           <Link to={`/payment`}>
             <button className="rounded-md text-white bg-[#8B4513] w-full">

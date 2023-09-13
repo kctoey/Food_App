@@ -51,7 +51,7 @@ const MenuLists = (item, amount) => {
   return (
     <div className="py-12">
       <article className=" cursor-pointer container px-8 py-2 font-Kanit font-bold border-[#F5EBDC] border-2 rounded-xl ">
-        <Link to={`/products/${item.id}`}>
+        <Link to={`/products/฿{item.id}`}>
           <img
             className="hover:opacity-75   p-4 z-auto object-cover rounded-full max-w-full h-auto "
             src={item.image}

@@ -24,7 +24,7 @@ const ProductCard = (props) => {
       className="px-4 text-[#8B4513] md:text-base text-sm product-card w-40 md:w-fit bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
     >
       <Link
-        to={`/products/${product.id}`}
+        to={`/products/฿{product.id}`}
         className="items-center flex flex-col justify-center"
       >
         <img
@@ -42,18 +42,18 @@ const ProductCard = (props) => {
           </p>
           <div className="flex items-center flex-col">
             <>
-              <p>${product.price}</p>
+              <p>฿{product.price}</p>
             </>
             {/* {sale ? (
               <>
                 <del className="text-xs  text-gray-400 cursor-auto my-3">
-                  ${product.price}
+                  ฿{product.price}
                 </del>
-                <p className="text-red-500"> ${discount5(product.price)}</p>
+                <p className="text-red-500"> ฿{discount5(product.price)}</p>
               </>
             ) : (
               <>
-                <p>${product.price}</p>
+                <p>฿{product.price}</p>
               </>
             )} */}
 
