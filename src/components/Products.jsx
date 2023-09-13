@@ -185,7 +185,7 @@ const Products = () => {
     return (
       <div className="w-full  font-Kanit text-[#8B4513] ">
         <hr className="my-4 mx-8" />
-        <div className="w-fit mx-auto grid grid-cols-2 xl:grid-cols-4 lg:grid-cols-3  justify-items-center justify-center gap-y-4 gap-x-4 mt-10 mb-5">
+        <div className="w-fit mx-auto grid grid-cols-2 xl:grid-cols-4 lg:grid-cols-3   justify-items-center justify-center gap-y-20 gap-x-4 mt-10 mb-5">
           {filteredUsers.map((product) => {
             return (
               <>
