@@ -78,7 +78,7 @@ const Product = () => {
             </span>{" "}
             {product.rating && product.rating.rate}
           </p>
-          <h3 className="p-4 text-[#8B4513] text-3xl">${product.price}</h3>
+          <h3 className="p-4 text-[#8B4513] text-3xl">฿{product.price}</h3>
           <p className="p-4 text-sm md:text-base">{product.description}</p>
           {user.user !== "" ? (
             <div className=" pl-4 pt-4">

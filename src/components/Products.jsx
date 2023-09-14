@@ -266,7 +266,7 @@ const Products = () => {
                       {product.title}
                     </p>
                     <div className="items-center flex flex-col">
-                      <div className=" cursor-auto my-3">${product.price}</div>
+                      <div className=" cursor-auto my-3">฿{product.price}</div>
                       {/* <p className="text-red-500">
                         {" "}
                         ${discount5(product.price)}

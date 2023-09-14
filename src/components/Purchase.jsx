@@ -55,14 +55,14 @@ const Purchase = () => {
   };
   const ShowProduct = () => {
     return (
-      <div className="bg-white w-screen h-full pt-20 lg:pt-60 font-Kanit flex flex-col justify-center items-center ">
+      <div className="bg-white w-screen h-full pt-20 lg:pt-48 font-Kanit flex flex-col justify-center items-center ">
         <h1 className="text-xl">You have {result.length} order </h1>
         <hr />
         {result ? (
           result.map((item) => (
             <div
               key={item.id}
-              className="text-sm relative overflow-x-auto md:shadow-md md:rounded-lg px-4 m-6 w-full md:w-[800px]"
+              className=" relative overflow-x-auto md:shadow-md md:rounded-lg px-4 m-6 w-full md:w-[800px]"
             >
               <h2>
                 Order Date: {item.date}{" "}
@@ -70,7 +70,7 @@ const Purchase = () => {
               </h2>
               <h3>Order Status: Pending</h3>
               <p>Items Ordered</p>
-
+              <hr />
               {item.product?.map((piece) => (
                 <div
                   className="flex flex-cols border-gray-200  "
@@ -79,7 +79,7 @@ const Purchase = () => {
                   {/* <p>{piece.title}</p>
               <p>{piece.qty}</p>
               <img width={100} height={100} src={piece.image} alt="" /> */}
-                  <table className="table-fixed text-sm">
+                  <table className="table-fixed">
                     <thead>
                       <tr>
                         <th></th>

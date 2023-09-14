@@ -84,7 +84,7 @@ const Checkout = () => {
           <div>
             <h1 className="text-xl">Promtpay Payment</h1>
             <p className="py-4">
-              Total amount : ${summary.subtotal.toFixed(2)}
+              Total amount : ฿{summary.subtotal.toFixed(2)}
             </p>
           </div>
           <img
